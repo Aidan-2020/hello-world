@@ -1,0 +1,28 @@
+<html>
+<head>
+    <script>
+        function func1(){
+            buttonOne.style.visibility ="hidden"
+            buttonTwo.style.visibility ="visible"
+        }
+        function func2(){
+            buttonOne.style.visibility ="visible"
+            buttonTwo.style.visibility ="hidden"
+        }
+    </script>
+    <style>
+        #yellowBox{
+            background-color: yellow;
+            color:blue;
+            border:solid black 1px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+<h1 id = "yellowBox" onclick="this.innerHTML = textinfo.value;" onmouseover="this.style.fontSize = '36px'" onmouseout="this.style.fontSize = '24px'">Type text in textbox and click here</h1>
+<input type = "text" id = "textinfo"><br><br>
+<input type = "button" id = "buttonOne" value="click" onclick="func1()">
+<input type = "button" id = "buttonTwo" value="click" onclick="func2()" style="visibility: hidden">
+</body>
+</html>
