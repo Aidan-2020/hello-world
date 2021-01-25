@@ -129,6 +129,14 @@ function display(){
         body {
   background-color: lightblue;
 }
+canvas{
+    position: absolute;
+    left:0;
+    right:0;
+    z-index: -1;
+    width: 1500;
+    height: 2000;
+}
     </style>
 </head>
 <body onload = "loadCanvas()">
@@ -136,7 +144,17 @@ function display(){
 
 <h1 id = "yellowBox"  onmouseover="this.style.fontSize = '36px'" onmouseout="this.style.fontSize = '24px'">Aidan Brown</h1>
 <div id = "divTwo" onmouseover="changeColor()">This is my website</div>
+   <input type = "button" value = "display" onclick="display()">
     
+     
+<input type = "button" value = "Start" onclick = "startTimer()" />
+<input type = "button" value = "Speed up on" onclick = "speedUp = true" />
+<input type = "button" value = "Speed up off" onclick = "speedUp = false" />
+<input type = "button" value = "Slow down on" onclick = "slowDown = true" />
+<input type = "button" value = "Slow down off" onclick = "slowDown = false" />
+    <canvas id="myCanvas" width="4000px" height="900px"  style="border:1px solid #000000;">
+    No canvas available!
+</canvas> 
     <img src="Screenshot (91).png" alt="joust" width="500" height="333">
     <div id = "BlueBox">Durian Heist is a two player game (that needs two seperate computers to connect) that I made while at the carnegie mellon university national high school game academy</div>
     <a href = "Durian Heist.exe"download id = "BlueBox">Download Durian Heist!</a>
@@ -151,15 +169,6 @@ function display(){
     <img src="Screenshot (93).png" alt="joust" width="500" height="333">
     <div id = "BlueBox">My final for I think my sophmore year is a funny project more than an impressive one. A First perosn shooter where all the enemies are floaitng speres with my face mapped on them</div>
     
-    <input type = "button" value = "display" onclick="display()">
-    
-     <canvas id="myCanvas" width="400px" height="400px"  style="border:1px solid #000000;">
-    No canvas available!
-</canvas> 
-<input type = "button" value = "Start" onclick = "startTimer()" />
-<input type = "button" value = "Speed up on" onclick = "speedUp = true" />
-<input type = "button" value = "Speed up off" onclick = "speedUp = false" />
-<input type = "button" value = "Slow down on" onclick = "slowDown = true" />
-<input type = "button" value = "Slow down off" onclick = "slowDown = false" />
+ 
 </body>
 </html>
