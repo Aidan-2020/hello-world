@@ -11,6 +11,103 @@
         function changeColor(){
             divTwo.style.backgroundColor = getRandomColor();
         }
+        
+        var dx = []; //speed in x direction
+        var dy = []; //speed in y direction
+        var diameter = [];  
+        var x = [];
+        var y = [];
+        var colors = [];
+        var numCircles = 50;
+        var canvas;
+        var ctx;
+	var size = 800; //canvas side length
+	var timerX
+	var speedUp = false;
+	var slowDown = false;
+       
+        function loadCanvas() {
+            canvas = document.getElementById("myCanvas");
+ 	    canvas.width = size;
+	    canvas.height = size;
+            ctx = canvas.getContext("2d");	   
+        }
+        
+        function startTimer() {	  
+           initializeArrays();
+	   clearInterval(timerX);
+           timerX = window.setInterval("tick()", 30)
+       }
+
+       function initializeArrays() {
+           for (var i = 0; i < numCircles; i++) {
+               dx[i] = parseInt(Math.random() * 5) - 3
+               dy[i] = parseInt(Math.random() * 5) - 3
+               diameter[i] = parseInt(Math.random() * 10) + 10
+               x[i] = parseInt(Math.random() * (size-2*diameter[i])) + diameter[i];
+               y[i] = parseInt(Math.random() * (size-2*diameter[i])) + diameter[i];
+               colors[i] = getRandomColor();
+           }
+       }
+
+
+       function tick() {
+           ctx.clearRect(0, 0, size, size);
+           for (var i = 0; i < numCircles; i++) {
+               x[i] = x[i] + dx[i]
+               y[i] = y[i] + dy[i]
+               if(diameter[i] <= 15 && diameter[i] > 7){
+                   diameter[i] -= .01;
+               }
+               if(diameter[i] > 15 && diameter[i] < 27){
+                   diameter[i] += .01;
+               }
+               if(speedUp == true){
+                   if(dx[i] >= 0){
+                       dx[i] += .01;
+                   }
+                   if(dy[i] >= 0){
+                       dy[i] += .01;
+                   }
+                   if(dx[i] <= 0){
+                       dx[i] -= .01;
+                   }
+                   if(dy[i] <= 0){
+                       dy[i] -= .01;
+                   }
+               }
+               if(slowDown == true){
+                   if(dx[i] >= 0){
+                       dx[i] -= .01;
+                   }
+                   if(dy[i] >= 0){
+                       dy[i] -= .01;
+                   }
+                   if(dx[i] <= 0){
+                       dx[i] += .01;
+                   }
+                   if(dy[i] <= 0){
+                       dy[i] += .01;
+                   }
+               }
+             //  if (x[i] <= diameter[i] || x[i] >= size - diameter[i]) dx[i] = -dx[i], colors[i] = getRandomColor();
+             //  if (y[i] <= diameter[i]  || y[i] >= size - diameter[i]) dy[i] = -dy[i], colors[i] = getRandomColor();
+               if (x[i] <= diameter[i] || x[i] >= size - diameter[i]) x[i] = canvas.width-x[i]; 
+               if (y[i] <= diameter[i]  || y[i] >= size - diameter[i]) y[i] = canvas.width-y[i]; 
+               ctx.fillStyle = colors[i]
+               ctx.beginPath();
+               ctx.arc(x[i], y[i], diameter[i], 0, 2 * Math.PI, true);
+               ctx.fill();
+           }
+       }
+
+       function getRandomColor() {
+           var red = parseInt(255 * Math.random());
+           var green = parseInt(255 * Math.random());
+           var blue = parseInt(255 * Math.random());
+           var color = "rgb(" + red + "," + green + "," + blue + ")"
+           return color
+       }
     </script>
     <style>
         #yellowBox{
@@ -31,8 +128,9 @@
 }
     </style>
 </head>
-<body>
-    
+<body onload = "loadCanvas()">
+  
+
 <h1 id = "yellowBox"  onmouseover="this.style.fontSize = '36px'" onmouseout="this.style.fontSize = '24px'">Aidan Brown</h1>
 <div id = "divTwo" onmouseover="changeColor()">This is my website</div>
     
@@ -47,5 +145,14 @@
     <div id = "BlueBox">The FOV game is another Carver game that utilizes raycats to only render what is in the players 'view', a  cone or wedge that is rendered in fron of them</div>
     <div id = "BlueBox">Dungeon escape I a Carver celebration game I made with Jack and Colin that is an infinte wave game</div>
     <div id = "BlueBox">My final for I think my sophmore year is a funny project more than an impressive one. A First perosn shooter where all the enemies are floaitng speres with my face mapped on them</div>
+    
+     <canvas id="myCanvas" width="400px" height="400px"  style="border:1px solid #000000;">
+    No canvas available!
+</canvas> 
+<input type = "button" value = "Start" onclick = "startTimer()" />
+<input type = "button" value = "Speed up on" onclick = "speedUp = true" />
+<input type = "button" value = "Speed up off" onclick = "speedUp = false" />
+<input type = "button" value = "Slow down on" onclick = "slowDown = true" />
+<input type = "button" value = "Slow down off" onclick = "slowDown = false" />
 </body>
 </html>
