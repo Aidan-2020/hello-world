@@ -141,6 +141,10 @@ canvas{
     width: 2000;
     height: 2000;
 }
+
+.grow-big{
+    .growbig:hover, .growbig:focus {width:192px;height: 136px;}
+}
     </style>
 </head>
 <body onload = "loadCanvas()">
@@ -161,7 +165,7 @@ canvas{
 <div id = "divTwo" onmouseover="changeColor()">This is my website</div>
    <input type = "button" value = "display" onclick="display()">
 	
-    <img src="Screenshot (91).png" alt="joust" width="500" height="333"onmouseover="width='900' height='733'" onmouseout="width='500' height='333'">
+    <img src="Screenshot (91).png" class="grow-big" alt="joust" width="500" height="333">
     <div id = "BlueBox" onmouseover="this.style.fontSize = '36px'" onmouseout="this.style.fontSize = '24px'">Durian Heist is a two player game (that needs two seperate computers to connect) that I made while at the carnegie mellon university national high school game academy</div>
     <a href = "Durian Heist.exe"download id = "BlueBox">Download Durian Heist!</a>
     <img src="Screenshot (10).png" alt="joust" width="500" height="333" onmouseover="width='900' height='733'" onmouseout="width='500' height='333'">
